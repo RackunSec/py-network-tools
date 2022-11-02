@@ -1,8 +1,8 @@
 # ScanSplit: a Gnmap File Organizer
-ScanSplit will take the output NMAP (specifically the GNMAP file) and create a directory full of files. Each file is named after the protocol detected and will be filled with IP addresses.
+ScanSplit will take the output of Nmap's (often very large) GNmap file and organize it for usage with red team tools that require lists of IP addresses. For instance, This tool will create an output directory full of files labeled after the identified protocol: "ftp.txt" or "ldap.txt" that can then be passed as arguments into tools such as CrackMapExec, SMBMap, etc.
 
 ## Usage
-To use Gnmap-Organizer:
+To use ScanSplit:
 ```bash
 python3 scansplit.py /path/to/nmap-output.gnmap
 ```
