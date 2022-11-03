@@ -12,7 +12,7 @@ from re import search,sub ## Regexp
 
 ## Usage for app. Just pass me a .gnmap file:
 def usage():
-    print(f"[i] Usage: python3 gnmap-organizer.py (Nmap.gnmap file)")
+    print(f"[i] Usage: python3 scansplit.py (Nmap.gnmap file)")
     exit() ## done.
 
 class GnmapOrg():
