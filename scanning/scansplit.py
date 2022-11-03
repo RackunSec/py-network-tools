@@ -8,7 +8,7 @@
 ##
 from sys import argv,exit ## CLI args and Exit
 from os import path,mkdir ## File Path Check
-from re import match,sub ## Regexp
+from re import search,sub ## Regexp
 
 ## Usage for app. Just pass me a .gnmap file:
 def usage():
@@ -19,7 +19,7 @@ class GnmapOrg():
     def __init__(self,filename):
         self.protocols = {
             "ftp":{"port":[20,21],"hosts":[]},
-            "smb":{"port":[445],"hosts":[]},
+            "smb":{"port":[445,139],"hosts":[]},
             "http":{"port":[80,8080],"hosts":[]},
             "https":{"port":[443,8443],"hosts":[]},
             "ldap":{"port":[389,636],"hosts":[]},
@@ -47,16 +47,13 @@ class GnmapOrg():
             ## Loop pver the gnmap lines and build protocols{}
             for line in gnmap_lines: ## Loop over file and build protocols{}
                 line_stripped = line.strip() ## remove newlines
-                line_split=line_stripped.split() ## split it up using spaces as delim
-                if len(line_split)>=5: ## If it's long enough
-                    if match(r"^[0-9]+",line_split[4]): ## Match a port number
-                        ## Get just the port number:
-                        port = int(sub(r"\/.*","",line_split[4]))
-                        for proto in self.protocols:
-                            #print(protocols[proto]['port'])
-                            if port in self.protocols[proto]['port']:
-                                if line_split[1] not in self.protocols[proto]['hosts']:
-                                    self.protocols[proto]['hosts'].append(line_split[1]) ## Add it in
+                for proto in self.protocols:
+                    for port in self.protocols[proto]['port']:
+                        if search(f"{port}.open",line_stripped):
+                            ## split the line and grab just the ip address:
+                            host=line_stripped.split()[1]
+                            if host not in self.protocols[proto]['hosts']:
+                                self.protocols[proto]['hosts'].append(host)
             ## Now we write the log files:
             if "/" in argv[1]: ## They are running this from another directory:
                 log_dir = sub(r".*\/([^.]+)\.gnmap",r"\1",argv[1]) ## make a directory
