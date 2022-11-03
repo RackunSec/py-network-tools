@@ -12,7 +12,7 @@ from re import search,sub ## Regexp
 
 ## Usage for app. Just pass me a .gnmap file:
 def usage():
-    print(f"[i] Usage: python3 scansplit.py (Nmap.gnmap file)")
+    print(f"[i] Usage: python3 gnmap-organizer.py (Nmap.gnmap file)")
     exit() ## done.
 
 class GnmapOrg():
@@ -49,7 +49,7 @@ class GnmapOrg():
                 line_stripped = line.strip() ## remove newlines
                 for proto in self.protocols:
                     for port in self.protocols[proto]['port']:
-                        if search(f"{port}.open",line_stripped):
+                        if search(f" {port}.open",line_stripped):
                             ## split the line and grab just the ip address:
                             host=line_stripped.split()[1]
                             if host not in self.protocols[proto]['hosts']:
