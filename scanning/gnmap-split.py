@@ -12,7 +12,7 @@ from re import search,sub ## Regexp
 
 ## Usage for app. Just pass me a .gnmap file:
 def usage():
-    print(f"[i] Usage: python3 gnmap-organizer.py (Nmap.gnmap file)")
+    print(f"[i] Usage: python3 gnmap-split.py (Nmap.gnmap file)")
     exit() ## done.
 
 class GnmapOrg():
@@ -39,7 +39,6 @@ class GnmapOrg():
             "ike":{"port":[500],"hosts":[]},
             "snmp":{"port":[161],"hosts":[]},
             "mssql":{"port":[1433],"hosts":[]},
-            "mysql":{"port":[3306],"hosts":[]},
             "winrm":{"port":[5985],"hosts":[]}
             }
         self.filename = filename
