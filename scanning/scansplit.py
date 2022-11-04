@@ -37,6 +37,10 @@ class GnmapOrg():
             "pop3":{"port":[995,109,110],"hosts":[]},
             "ipmi":{"port":[623],"hosts":[]},
             "ike":{"port":[500],"hosts":[]},
+            "snmp":{"port":[161],"hosts":[]},
+            "mssql":{"port":[1433],"hosts":[]},
+            "mysql":{"port":[3306],"hosts":[]},
+            "winrm":{"port":[5985],"hosts":[]}
             }
         self.filename = filename
 
