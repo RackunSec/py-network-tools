@@ -6,6 +6,9 @@
 ##  3. creates files in the log directory for each protocol listed in GnmapOrg.protocols below.
 ## I made this to make my life easier and it worked.
 ##
+## To add more protocols/ports, simply add them (in the same format as the examples)
+##   to the GnmapOrg.protocols object.
+##
 from sys import argv,exit ## CLI args and Exit
 from os import path,mkdir ## File Path Check
 from re import search,sub ## Regexp
